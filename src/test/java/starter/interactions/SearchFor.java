@@ -1,12 +1,10 @@
-package starter.search;
+package starter.interactions;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
-import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.Keys;
+import starter.pages.SearchForm;
 
 public class SearchFor extends UIInteractionSteps {
-
-    @Step("Search for {0}")
     public void term(String term) {
         $(SearchForm.SEARCH_FIELD).waitUntilEnabled().clear();
         $(SearchForm.SEARCH_FIELD).sendKeys(term, Keys.ENTER);
