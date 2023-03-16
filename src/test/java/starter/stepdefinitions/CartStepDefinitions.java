@@ -1,6 +1,5 @@
 package starter.stepdefinitions;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,9 +8,7 @@ import starter.interactions.NavigateTo;
 import starter.interactions.ShoppingCart;
 import starter.interactions.SearchFor;
 import starter.interactions.SearchResult;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 public class CartStepDefinitions {
 
@@ -28,23 +25,15 @@ public class CartStepDefinitions {
     ShoppingCart shoppingCart;
 
 
-    @Given("^(?:.*) is searching products")
-    public void i_am_on_the_prestashop_home_page() {
+    @Given("^(?:.*) has an empty basket")
+    public void i_have_an_empty_basket() {
         navigateTo.theHomePage();
     }
 
-    @When("he/she looks up {string}")
-    public void i_search_for(String term) {
-        searchFor.term(term);
-    }
-
-    @And("he/she opens the first item found {string}")
-    public void i_open_first_item_found(String productName) {
+    @When("he/she adds the item {string} to shopping cart")
+    public void i_add_item_found_to_shopping_cart(String productName) {
+        searchFor.term(productName);
         searchResult.seeProductArticle(productName);
-    }
-
-    @And("he/she adds the item to shopping cart")
-    public void i_add_item_found_to_shopping_cart() {
         shoppingCart.addProduct();
     }
 
